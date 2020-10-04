@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "projects": {
+    "form-maker": {
+      "root": "apps/form-maker",
+      "sourceRoot": "apps/form-maker",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "options": {
+            "root": "apps/form-maker",
+            "outputPath": "dist/apps/form-maker"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "form-maker:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "form-maker:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "form-maker:build:production"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/form-maker/**/*.{ts,tsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/form-maker/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "form-maker-e2e": {
+      "root": "apps/form-maker-e2e",
+      "sourceRoot": "apps/form-maker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/form-maker-e2e/cypress.json",
+            "tsConfig": "apps/form-maker-e2e/tsconfig.e2e.json",
+            "devServerTarget": "form-maker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "form-maker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/form-maker-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "form-maker"
+}
