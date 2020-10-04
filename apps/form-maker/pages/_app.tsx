@@ -17,6 +17,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
         </header>
         <main>
           <Component {...pageProps} />
+          <h3>Create your own forms!</h3>
         </main>
       </div>
     </>
