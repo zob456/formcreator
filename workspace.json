@@ -11,7 +11,14 @@
           "builder": "@nrwl/next:build",
           "options": {
             "root": "apps/form-maker",
-            "outputPath": "dist/apps/form-maker"
+            "outputPath": "dist/apps/form-maker",
+            "assets": [
+              {
+                "input": "./libs/shared/assets/src/lib",
+                "glob": "*.png",
+                "output": "assets"
+              }
+            ]
           },
           "configurations": {
             "production": {}
@@ -73,6 +80,48 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/form-maker-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "test-form": {
+      "root": "libs/test-form",
+      "sourceRoot": "libs/test-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/test-form/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/test-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/assets/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/assets/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

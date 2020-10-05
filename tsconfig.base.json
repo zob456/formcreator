@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@form-creator/test-form": ["libs/test-form/src/index.ts"],
+      "@form-creator/shared/assets": ["libs/shared/assets/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
