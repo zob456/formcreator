@@ -29,6 +29,12 @@
     "form-maker-e2e": {
       "tags": [],
       "implicitDependencies": ["form-maker"]
+    },
+    "test-form": {
+      "tags": []
+    },
+    "shared-assets": {
+      "tags": []
     }
   }
 }
